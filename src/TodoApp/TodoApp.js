@@ -44,8 +44,7 @@ export default class TodoApp extends React.Component {
         let filterTodos = this.state.todos.filter(todo => todo.id !== Number(event.target.parentNode.dataset.id));
 
         this.setState({
-            todos: filterTodos,
-            count: --this.state.count
+            todos: filterTodos
         });
     }
 
