@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class AddTodo extends React.Component {
   constructor(props) {
@@ -34,3 +35,7 @@ export default class AddTodo extends React.Component {
     );
   }
 }
+
+AddTodo.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
+};

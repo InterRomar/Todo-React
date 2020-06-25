@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function TodoItem(props) {
   const { handleDelete, handleToggle, todo } = props;
@@ -26,3 +27,13 @@ export default function TodoItem(props) {
     </li>
   );
 }
+
+TodoItem.propTypes = {
+  handleDelete: PropTypes.func.isRequired,
+  handleToggle: PropTypes.func.isRequired,
+  todo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    isCompleted: PropTypes.bool.isRequired
+  })
+};
