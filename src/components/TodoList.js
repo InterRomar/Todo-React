@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import Todo from './Todo';
 import { toggleTodo, deleteTodo, SortStatuses } from '../store/actions';
+import { getSortingTodoList } from '../store/selectors';
 
 
 class TodoList extends React.Component {
@@ -11,34 +13,24 @@ class TodoList extends React.Component {
 
     return (
       <div>
-        <ul className="todo__list">
-          {todos.map((todo) => <Todo
-            todo={todo}
-            key={todo.id}
-            toggleTodo={() => toggleTodo(todo.id)}
-            deleteTodo={() => deleteTodo(todo.id)}
-          />)}
-        </ul>
+        {todos.length > 0 &&
+          <ul className="todo__list">
+            {todos.map((todo) => <Todo
+              todo={todo}
+              key={todo.id}
+              toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo}
+            />)}
+          </ul>
+        }
       </div>
     );
   }
 }
 
-const getSortingTodoList = (todos, status) => {
-  switch (status) {
-    case SortStatuses.SHOW_ALL:
-      return todos;
-    case SortStatuses.SHOW_COMPLETED:
-      return todos.filter(todo => todo.completed);
-    case SortStatuses.SHOW_INCOMPLETED:
-      return todos.filter(todo => !todo.completed);
-    default:
-      throw new Error(`Unknown sorting status ${status}`);
-  }
-};
 
 const mapStateToProps = state => ({
-  todos: getSortingTodoList(state.todos, state.sortStatus),
+  todos: getSortingTodoList(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -57,14 +49,6 @@ TodoList.propTypes = {
       completed: PropTypes.bool
     })
   ),
-  toggleTodo: PropTypes.shape({
-    id: PropTypes.number,
-    text: PropTypes.string,
-    completed: PropTypes.bool
-  }),
-  deleteTodo: PropTypes.shape({
-    id: PropTypes.number,
-    text: PropTypes.string,
-    completed: PropTypes.bool
-  }),
+  toggleTodo: PropTypes.func,
+  deleteTodo: PropTypes.func,
 };

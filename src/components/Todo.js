@@ -12,7 +12,7 @@ const Todo = ({ todo, toggleTodo, deleteTodo }) => {
         className="switch"
         checked={todo.completed}
         id={todo.id}
-        onChange={toggleTodo}
+        onChange={() => toggleTodo(todo.id)}
       />
       <label htmlFor={todo.id}></label>
       <span
@@ -22,7 +22,7 @@ const Todo = ({ todo, toggleTodo, deleteTodo }) => {
       </span>
       <span
         className="todo__delete"
-        onClick={deleteTodo}
+        onClick={() => deleteTodo(todo.id)}
       >
         &#10006;
       </span>
@@ -38,14 +38,6 @@ Todo.propTypes = {
     text: PropTypes.string,
     completed: PropTypes.bool
   }),
-  toggleTodo: PropTypes.shape({
-    id: PropTypes.number,
-    text: PropTypes.string,
-    completed: PropTypes.bool
-  }),
-  deleteTodo: PropTypes.shape({
-    id: PropTypes.number,
-    text: PropTypes.string,
-    completed: PropTypes.bool
-  }),
+  toggleTodo: PropTypes.func,
+  deleteTodo: PropTypes.func,
 };

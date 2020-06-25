@@ -1,5 +1,9 @@
 import { TodoActionTypes } from '../actions';
 
+// const initialState = {
+//   todos: [],
+// }; ????????????
+
 
 const todos = (state = [], action) => {
   switch (action.type) {

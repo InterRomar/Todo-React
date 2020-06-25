@@ -1,4 +1,5 @@
 import React from 'react';
+
 import TodoList from './TodoList';
 import Footer from './Footer';
 import AddTodo from './AddTodo';
@@ -7,15 +8,18 @@ import AddTodo from './AddTodo';
 class TodoApp extends React.Component {
   render = () => {
     return (
-      <section className="todo-app">
-        <div className="todo-app__header">
-          <AddTodo />
-        </div>
-        <div className="todo-app__body">
-          <TodoList />
-        </div>
-          <Footer />
-      </section>
+      <div className="container">
+        <h1 className="page__title">Todos</h1>
+        <section className="todo-app">
+          <div className="todo-app__header">
+            <AddTodo { ...this.props.store } />
+          </div>
+          <div className="todo-app__body">
+            <TodoList />
+          </div>
+            <Footer />
+        </section>
+      </div>
     );
   }
 }

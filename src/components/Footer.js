@@ -1,13 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
 import { setSortStatus, clearCompleted } from '../store/actions';
 
 
 const Footer = (props) => {
-  const { setSortStatus, clearCompleted, currentStatus, todos, completed, incompleted } = props;
+  const {
+    setSortStatus,
+    clearCompleted,
+    currentStatus,
+    todos,
+    completed,
+    incompleted } = props;
+
   return (
-    <div>
+    <React.Fragment>
       { todos.length > 0 &&
         <div className="todo-app__footer footer">
           <span className="footer__info-incompleted">
@@ -45,7 +53,7 @@ const Footer = (props) => {
           </div>
           </div>
       }
-    </div>
+    </React.Fragment>
   );
 };
 
