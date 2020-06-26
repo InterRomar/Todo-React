@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Todo from './Todo';
-import { toggleTodo, deleteTodo, SortStatuses } from '../store/actions';
+import { toggleTodo, deleteTodo } from '../store/actions';
 import { getSortingTodoList } from '../store/selectors';
 
 

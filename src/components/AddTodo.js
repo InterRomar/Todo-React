@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { addTodo } from '../store/actions';
 
 class AddTodo extends Component {
   constructor(props) {
@@ -18,22 +17,16 @@ class AddTodo extends Component {
     });
   }
 
-  onSubmitClick = (event) => {
-    event.preventDefault();
-    if (!this.state.value) {
-      return;
-    }
-
-    this.props.dispatch(addTodo(this.state.value));
-    this.setState({
-      value: ''
-    });
-  }
-
   render() {
+    const { onSubmit } = this.props;
     return (
       <form
-        onSubmit={(event) => this.onSubmitClick(event)}
+        onSubmit={(event) => {
+          this.setState({
+            value: ''
+          });
+          onSubmit(event, this.state.value);
+        }}
       >
         <input
           autoComplete="off"
@@ -51,5 +44,6 @@ class AddTodo extends Component {
 export default AddTodo;
 
 AddTodo.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  onSubmit: PropTypes.func
 };

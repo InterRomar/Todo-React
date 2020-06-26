@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
+
 import { SortStatuses } from '../actions';
 
-const getSortStatus = state => state.sortStatus;
-const getTodos = state => state.todos;
+const getSortStatus = state => state.sortStatus.sortStatus;
+const getTodos = state => state.todosStore.todos;
 
 export const getSortingTodoList = createSelector(
   [getTodos, getSortStatus],

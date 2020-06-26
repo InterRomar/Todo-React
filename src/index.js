@@ -11,7 +11,7 @@ import './style.css';
 function App() {
   return (
     <Provider store={store}>
-      <TodoApp store={store}/>
+      <TodoApp dispatch={store.dispatch}/>
     </Provider>
   );
 }

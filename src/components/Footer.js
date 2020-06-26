@@ -59,9 +59,9 @@ const Footer = (props) => {
 
 const mapStateToProps = state => ({
   currentStatus: state.sortStatus,
-  todos: state.todos,
-  completed: state.todos.filter(todo => todo.completed),
-  incompleted: state.todos.filter(todo => !todo.completed)
+  todos: state.todosStore.todos,
+  completed: state.todosStore.todos.filter(todo => todo.completed),
+  incompleted: state.todosStore.todos.filter(todo => !todo.completed)
 });
 
 const mapDispatchToProps = (dispatch) => ({
